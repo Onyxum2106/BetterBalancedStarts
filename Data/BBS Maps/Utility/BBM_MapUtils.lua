@@ -4290,6 +4290,9 @@ function BreakDesertPatches()
 			if plot ~= nil and not plot:IsWater() and not plot:IsNaturalWonder() then
 				local terrainType = plot:GetTerrainType();
 				if terrainType == 6 or terrainType == 7 then -- DESERT or DESERT_HILLS
+					if plot:GetFeatureType() == g_FEATURE_FLOODPLAINS then
+						-- skip: desert floodplains are farmable and not a scouting problem
+					else
 					local adjDesert = 0;
 					for direction = 0, DirectionTypes.NUM_DIRECTION_TYPES - 1, 1 do
 						local adj = Map.GetAdjacentPlot(plot:GetX(), plot:GetY(), direction);
@@ -4303,6 +4306,7 @@ function BreakDesertPatches()
 					if adjDesert >= 3 then
 						table.insert(toConvert, i);
 					end
+					end -- else
 				end
 			end
 		end
@@ -4324,13 +4328,18 @@ function BreakDesertPatches()
 
 	-- Add jungle to ~60% of converted plains tiles; forest to ~60% of converted grassland tiles.
 	-- Deduplicates by checking feature is still NONE (a tile may appear in multiple pass lists).
+	local iEquator = math.ceil(iH / 2);
+	local jungleRange = 20 * iH / 180;
 	for _, i in ipairs(convertedPlots) do
 		local plot = Map.GetPlotByIndex(i);
 		if plot ~= nil and plot:GetFeatureType() == g_FEATURE_NONE then
 			local t = plot:GetTerrainType();
 			if (t == g_TERRAIN_TYPE_PLAINS or t == g_TERRAIN_TYPE_PLAINS_HILLS)
 					and TerrainBuilder.GetRandomNumber(10, "DesertConvert jungle") < 6 then
-				TerrainBuilder.SetFeatureType(plot, g_FEATURE_JUNGLE);
+				local y = plot:GetY();
+				local inJungleBand = (y >= iEquator - jungleRange) and (y <= iEquator + jungleRange);
+				local feature = inJungleBand and g_FEATURE_JUNGLE or g_FEATURE_FOREST;
+				TerrainBuilder.SetFeatureType(plot, feature);
 			elseif (t == g_TERRAIN_TYPE_GRASS or t == g_TERRAIN_TYPE_GRASS_HILLS)
 					and TerrainBuilder.GetRandomNumber(10, "DesertConvert forest") < 6 then
 				TerrainBuilder.SetFeatureType(plot, g_FEATURE_FOREST);

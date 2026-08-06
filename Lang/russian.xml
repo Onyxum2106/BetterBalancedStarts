@@ -693,10 +693,22 @@
 		  <Text>Wulingyuan is a scenic and historical site in south-central China. It is noted for more than 3,000 quartzite sandstone pillars and peaks, many over 200 meters in height, along with ravines, gorges, pools, lakes, rivers and waterfalls. It features 40 caves and two natural bridges, Xianrenqiao (Bridge of the Immortals) and Tianqiashengkong (Bridge Across the Sky).</Text>
 	</Replace>		
 	        <Replace Tag="LOC_BBM_LUX_EXP1_NAME" Language="ru_RU">
-            <Text>Минимальное количество редких ресурсов в пределах 6 клеток от столицы</Text>
+            <Text>[EXPERIMENTAL] Баланс редких ресурсов</Text>
         </Replace>
         <Replace Tag="LOC_BBM_LUX_EXP1_DESC" Language="ru_RU">
             <Text>Гарантирует каждому игроку минимум 7 редких ресурсов в пределах 6 клеток от столицы. Игроки с меньшим количеством получают дополнительные редкие ресурсы в радиусе 6 клеток от столицы в соответствии с их континентом. Работает на всех картах.</Text>
+        </Replace>
+        <Replace Tag="LOC_BBM_BREAK_CLUMPS_NAME" Language="ru_RU">
+            <Text>Разделение горных массивов</Text>
+        </Replace>
+        <Replace Tag="LOC_BBM_BREAK_CLUMPS_DESC" Language="ru_RU">
+            <Text>Уменьшает размеры крупных горных массивов, превращая внутренние горы (имеющие 4 и более соседних горных клетки) в холмы. Это улучшает пригодность стартовых позиций рядом с горными хребтами.</Text>
+        </Replace>
+        <Replace Tag="LOC_BBM_BREAK_DESERT_NAME" Language="ru_RU">
+            <Text>Разделение пустынных областей</Text>
+        </Replace>
+        <Replace Tag="LOC_BBM_BREAK_DESERT_DESC" Language="ru_RU">
+            <Text>НЕ ИСПОЛЬЗУЙТЕ, ЕСЛИ В ИГРЕ ЕСТЬ МАЛИ. Разбивает крупные сплошные пустынные области на небольшие разрозненные участки. Клетки пустыни, имеющие 3 и более соседних пустынных клетки, превращаются в равнины, чтобы игроки не начинали игру рядом с непригодной для заселения пустыней, при этом небольшие пустынные участки сохраняются для появления чудес природы.</Text>
         </Replace>
         </LocalizedText>
 
